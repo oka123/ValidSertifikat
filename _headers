@@ -1,3 +1,9 @@
+/
+  Cache-Control: public, max-age=300
+
+/*
+  Cache-Control: public, max-age=300
+  
 /UMD/*.js
   Cache-Control: public, max-age=900, immutable
 
