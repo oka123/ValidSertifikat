@@ -1,0 +1,120 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* All CSS from the original file is placed here, scoped to the component */
+:host {
+    display: block; /* Ensures the component takes up space */
+    height: 100%;
+    width: 100%;
+}
+/* Pola titik untuk background canvas area */
+.bg-dots { background-image: radial-gradient(#a1a1aa 1px, transparent 0); background-size: 20px 20px; }
+.dark .bg-dots { background-image: radial-gradient(#475569 1px, transparent 0); }
+
+/* Custom scrollbar light mode */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: #f1f5f9; }
+::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #64748b; }
+
+/* Custom scrollbar dark mode */
+.dark ::-webkit-scrollbar-track { background: #1e293b; }
+.dark ::-webkit-scrollbar-thumb { background: #475569; }
+.dark ::-webkit-scrollbar-thumb:hover { background: #64748b; }
+
+.borders {
+    border-width: 1px;
+}
+
+.borders-r {
+    border-right-width: 1px;
+}
+
+.borders-b {
+    border-bottom-width: 1px;
+}
+
+.borders-l {
+    border-left-width: 1px;
+}
+
+.borders-t {
+    border-top-width: 1px;
+}
+
+#context-menu {
+    --menu-bg: #1e293b; /* slate-800 */
+    --menu-text: #cbd5e1; /* slate-300 */
+    --menu-hover-bg: #334155; /* slate-700 */
+    --menu-separator: #475569; /* slate-600 */
+    --menu-shortcut-text: #94a3b8; /* slate-400 */
+}
+#context-menu button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 8px 12px;
+    background-color: transparent;
+    border: none;
+    color: var(--menu-text);
+    text-align: left;
+    cursor: pointer;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+#context-menu button:hover {
+    background-color: var(--menu-hover-bg);
+}
+#context-menu button:disabled {
+    color: #475569; /* slate-600 */
+    cursor: not-allowed;
+    background-color: transparent;
+}
+#context-menu .shortcut {
+    color: var(--menu-shortcut-text);
+    font-size: 12px;
+    margin-left: 16px;
+}
+#context-menu .separator {
+    height: 1px;
+    background-color: var(--menu-separator);
+    margin: 4px 0;
+}
+/* Submenu styles */
+#context-menu .submenu-container {
+    position: relative;
+}
+#context-menu .submenu {
+    display: none;
+    position: absolute;
+    left: 100%;
+    top: -5px;
+    min-width: 150px;
+    background-color: var(--menu-bg);
+    border-radius: 6px;
+    padding: 4px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+#context-menu .submenu-container:hover .submenu {
+    display: block;
+}
+/* FIX: Submenu overflow */
+#context-menu .submenu-container.submenu-open-left .submenu {
+    left: auto;
+    right: 100%;
+}
+#context-menu .submenu-container.submenu-open-right .submenu {
+    left: 100%;
+    right: auto;
+}
+/* Mobile menu styles */
+#context-menu .md\:hidden button {
+    padding: 10px;
+    color: var(--menu-text);
+}
+#context-menu .md\:hidden button svg {
+    width: 24px;
+    height: 24px;
+}
